@@ -1,3 +1,5 @@
 import express from "express";
 import { config } from "dotenv";
-export { express, config };
+import MongodbConnection from "../app/config/dbConfiguration.mjs";
+
+export { express, config, MongodbConnection };
