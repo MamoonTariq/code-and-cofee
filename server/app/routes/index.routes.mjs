@@ -1,9 +1,7 @@
 import { UserController } from "../controllers/index.controllers.mjs";
 import { Router } from "express";
 
-console.log(UserController);
-
 const routes = Router();
-routes.get("/user/signUp", UserController.SignUp);
+routes.get("/user/sign-up", UserController.SignUp);
 
 export default routes;
