@@ -1,8 +1,3 @@
-import { express, config, MongodbConnection } from "./imports/index.mjs";
+import MainApp from "./config/index.mjs";
 
-const app = express();
-config(); //for env file
-MongodbConnection();
-app.listen(process.env.PORT, () => {
-  console.log("congratulations server started");
-});
+MainApp();

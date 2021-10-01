@@ -1,4 +1,9 @@
-const UserController = () => {
-  return <div>tisd</div>;
+const SignUp = (req, res) => {
+  // console.log({ req });
+  return res.json({
+    success: 0,
+    message: "User Name Already Exists",
+  });
 };
-export default UserController;
+
+export { SignUp };

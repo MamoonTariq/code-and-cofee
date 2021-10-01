@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MongodbConnection = () => {
+const mongodbConnection = () => {
   mongoose.connect(process.env.DB_SRV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -10,4 +10,4 @@ const MongodbConnection = () => {
   });
 };
 
-export default MongodbConnection;
+export default mongodbConnection;
