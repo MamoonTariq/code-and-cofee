@@ -13,5 +13,6 @@ npm i --save-dev nodemon
 <div>
 <b>Add below script in package.json file under scripts object</b>
 <code>"start": "nodemon index.mjs"</code>
-[packageJson](https://user-images.githubusercontent.com/44664610/135656582-ef0d3416-32c3-4a17-b875-5156e2c5aa27.png)
 </div>
+
+![packageJson](https://user-images.githubusercontent.com/44664610/135656582-ef0d3416-32c3-4a17-b875-5156e2c5aa27.png)
