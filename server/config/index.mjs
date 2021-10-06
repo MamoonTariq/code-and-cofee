@@ -4,37 +4,28 @@ import cors from "cors";
 import "dotenv/config";
 import routes from "../app/routes/index.routes.mjs";
 import morgan from "morgan";
-// import passport from "passport";
-// import GoogleStrategy from "passport-google-oauth20";
-import Passport from "../app/auth/google.auth.mjs";
+import AuthGooglePassport from "../app/auth/google.auth.mjs";
 import passport from "passport";
+const app = express();
 
 const MainApp = () => {
-  const app = express();
+  //DB Connection
   mongodbConnection();
-  app.use(passport.initialize());
-  Passport();
-  // passport.use(
-  //   new GoogleStrategy(
-  //     {
-  //       callbackURL: "/auth/google/redirect",
-  //       clientID: process.env.GoogleClientID,
-  //       clientSecret: process.env.GoogleSercetKey,
-  //     },
-  //     (accessToken, refreshToken, profile, done) => {
-  //       console.log(profile);
-  //     }
-  //   )
-  // );
 
-  app.use(morgan("tiny"));
+  // initialize passport
+  app.use(passport.initialize());
+
+  // Google Authantication
+  AuthGooglePassport();
+
+  app.use(morgan("dev"));
   app.use(express.json());
   app.use(cors());
 
   app.use("/auth", routes);
 
   app.listen(process.env.PORT, () => {
-    console.log("congratulations server started");
+    console.log("Server Started Successfully");
   });
 };
 

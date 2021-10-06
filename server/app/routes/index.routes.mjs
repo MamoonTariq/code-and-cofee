@@ -27,13 +27,4 @@ routes.get("/dashboard", (req, res) => {
   res.send("your dashboard");
 });
 
-// var authChecker = (req, res, next) => {
-//   console.log(req.user);
-//   if (!req.user) {
-//     console.log("not loggedin");
-//   } else {
-//     next();
-//   }
-// };
-
 export default routes;

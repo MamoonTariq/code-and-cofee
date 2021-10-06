@@ -20,3 +20,6 @@ npm i --save-dev nodemon
 
 **=> Install Morgan:**
 npm i morgan
+
+**=> Install Passport and Password Google OAuth2:**
+npm i passport passport-google-oauth2

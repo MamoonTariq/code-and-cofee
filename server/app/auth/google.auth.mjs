@@ -1,7 +1,7 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 
-const Passport = () => {
+const AuthGooglePassport = () => {
   passport.serializeUser((user, done) => {
     console.log("serlize", user);
     done(null, user);
@@ -27,4 +27,4 @@ const Passport = () => {
   );
 };
 
-export default Passport;
+export default AuthGooglePassport;
