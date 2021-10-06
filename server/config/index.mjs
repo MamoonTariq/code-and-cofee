@@ -7,9 +7,12 @@ import morgan from "morgan";
 // import passport from "passport";
 // import GoogleStrategy from "passport-google-oauth20";
 import Passport from "../app/auth/google.auth.mjs";
+import passport from "passport";
 
 const MainApp = () => {
   const app = express();
+  mongodbConnection();
+  app.use(passport.initialize());
   Passport();
   // passport.use(
   //   new GoogleStrategy(
@@ -24,7 +27,6 @@ const MainApp = () => {
   //   )
   // );
 
-  //mongodbConnection();
   app.use(morgan("tiny"));
   app.use(express.json());
   app.use(cors());

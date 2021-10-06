@@ -12,8 +12,28 @@ routes.get(
   })
 );
 
-routes.get("/google/redirect", Passport.authenticate("google"), (req, res) => {
-  res.send("you reached the callback");
+routes.get(
+  "/google/redirect",
+  await Passport.authenticate("google"),
+  (req, res) => {
+    //  res.send(req.user);
+    // console.log(req.user, "redirec");
+    res.send("yoloooooooooooo bachaaaaa");
+  }
+);
+
+routes.get("/dashboard", (req, res) => {
+  console.log(req.user, "enter in dashbaord");
+  res.send("your dashboard");
 });
+
+// var authChecker = (req, res, next) => {
+//   console.log(req.user);
+//   if (!req.user) {
+//     console.log("not loggedin");
+//   } else {
+//     next();
+//   }
+// };
 
 export default routes;
