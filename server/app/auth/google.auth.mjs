@@ -20,7 +20,7 @@ const AuthGooglePassport = () => {
         clientSecret: process.env.GoogleSercetKey,
       },
       (accessToken, refreshToken, profile, done) => {
-        // console.log(accessToken);
+        console.log(profile.id);
         done(null, profile.id);
       }
     )

@@ -16,15 +16,9 @@ routes.get(
   "/google/redirect",
   await Passport.authenticate("google"),
   (req, res) => {
-    //  res.send(req.user);
-    // console.log(req.user, "redirec");
-    res.send("yoloooooooooooo bachaaaaa");
+    console.log(req.user);
+    res.redirect(`${process.env.GoogleLoginRedirect}?auth=${req.user}`);
   }
 );
-
-routes.get("/dashboard", (req, res) => {
-  console.log(req.user, "enter in dashbaord");
-  res.send("your dashboard");
-});
 
 export default routes;
