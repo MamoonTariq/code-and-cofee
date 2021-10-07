@@ -25,7 +25,7 @@ const MainApp = () => {
   app.use("/auth", AuthRoutes);
 
   app.listen(process.env.PORT, () => {
-    console.log(Message({ key: "serverStarted" }));
+    console.log(Message({ key: "serverStarted", status: 2 }));
   });
 };
 

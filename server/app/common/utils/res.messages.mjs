@@ -1,13 +1,15 @@
 import { MessageContent } from "../static/index.mjs";
 
-const MessageResponce = ({ key = "KeyNotFound", data = [], status = 200 }) => {
+const MessageResponce = ({ key = "KeyNotFound", data = [], status = 2 }) => {
   const message = MessageContent[key]
     ? MessageContent[key]
     : MessageContent["KeyNotFound"];
+
+  const Status = MessageContent[status];
   const responce = {
     message,
     data,
-    status,
+    status: Status,
   };
   return responce;
 };
