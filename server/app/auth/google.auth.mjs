@@ -1,5 +1,6 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
+import { UsersModal } from "../modals/index.modals.mjs";
 
 const AuthGooglePassport = () => {
   passport.serializeUser((user, done) => {
@@ -20,7 +21,36 @@ const AuthGooglePassport = () => {
         clientSecret: process.env.GoogleSercetKey,
       },
       (accessToken, refreshToken, profile, done) => {
-        console.log(profile.id);
+        UsersModal.find({ email: profile?._json?.email })
+          .then((userExist) => {
+            if (userExist.length === 0) {
+              const user = profile?._json;
+              const username = user?.name,
+                email = user?.email,
+                imgUrl = user?.picture,
+                commingFrom = "google";
+              UsersModal.create({
+                username,
+                email,
+                imgUrl,
+                commingFrom,
+              })
+                .then((insertUser) => {
+                  console.log(insertUser, "succesfuly");
+                })
+                .catch((error) => {
+                  console.log(
+                    error,
+                    "not inserted ... failded due to some errors"
+                  );
+                });
+            } else {
+              console.log("user exists");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         done(null, profile.id);
       }
     )

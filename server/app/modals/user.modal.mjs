@@ -27,15 +27,24 @@ const userSchema = Schema({
   },
   passord: {
     type: String,
-    required: true,
   },
   role: {
     type: String,
     enum: ["user", "admin", "super admin"],
     default: "user",
   },
+  commingFrom: {
+    type: String,
+  },
+  imgUrl: {
+    type: String,
+  },
+  timeStamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const UsersModal = mongoose.model("users", userSchema);
+const UsersModal = mongoose.model("user", userSchema);
 
 export default UsersModal;

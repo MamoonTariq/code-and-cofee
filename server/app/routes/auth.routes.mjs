@@ -8,7 +8,7 @@ routes.get("/user/sign-up", UserController.SignUp);
 routes.get(
   "/google",
   Passport.authenticate("google", {
-    scope: ["profile"],
+    scope: ["profile", "email"],
   })
 );
 
