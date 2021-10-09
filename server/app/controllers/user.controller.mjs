@@ -1,6 +1,18 @@
 import { UsersModal } from "../modals/index.modals.mjs";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import nodeMailer from "nodemailer";
+
+const transport = nodeMailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  auth: {
+    user: process.env.GmailUser,
+    pass: process.env.GmailPassword,
+  },
+});
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -102,9 +114,24 @@ const ForgotPassword = (req, res) => {
     UsersModal.findOne({ email: email, authType: "website" }).then(
       (emailExist) => {
         if (emailExist) {
-          return res.json({
-            message: "check your email",
-            status: 200,
+          const mailOption = {
+            from: process.env.GmailUser,
+            to: emailExist.email,
+            subject: "You New Password",
+            text: "sadfasdfasdfasdfasdfasd",
+          };
+          transport.sendMail(mailOption, (error, info) => {
+            if (info) {
+              return res.json({
+                message: "check your email",
+                status: 200,
+              });
+            } else {
+              return res.json({
+                error: "something went wrong try again later",
+                status: 201,
+              });
+            }
           });
         } else {
           return res.json({

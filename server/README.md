@@ -29,3 +29,6 @@ npm install bcrypt
 
 **=> Install Json Web Token:**
 npm install jsonwebtoken
+
+**=> Install Node Mailer:**
+npm i nodemailer
