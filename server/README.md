@@ -32,3 +32,6 @@ npm install jsonwebtoken
 
 **=> Install Node Mailer:**
 npm i nodemailer
+
+**=> Switch on after open this link for sending email:**
+https://myaccount.google.com/lesssecureapps
