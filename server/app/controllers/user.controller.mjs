@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const jwtSecret = process.env.JWT_SECRET;
 
-const SignUp = async (req, res) => {
+const SignUp = (req, res) => {
   const { username = "", email = "", password = "" } = req.body;
   if (username && email && password) {
     UsersModal.find({ email: email }).then((userExist) => {
@@ -96,4 +96,30 @@ const SignIn = (req, res) => {
   }
 };
 
-export { SignUp, SignIn };
+const ForgotPassword = (req, res) => {
+  const { email = "" } = req.body;
+  if (email) {
+    UsersModal.findOne({ email: email, authType: "website" }).then(
+      (emailExist) => {
+        if (emailExist) {
+          return res.json({
+            message: "check your email",
+            status: 200,
+          });
+        } else {
+          return res.json({
+            error: "email no found",
+            status: 201,
+          });
+        }
+      }
+    );
+  } else {
+    return res.json({
+      error: "email required",
+      status: 201,
+    });
+  }
+};
+
+export { SignUp, SignIn, ForgotPassword };

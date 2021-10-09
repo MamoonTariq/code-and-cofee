@@ -3,7 +3,6 @@ import { Router } from "express";
 import Passport from "passport";
 
 const routes = Router();
-routes.get("/user/sign-up", UserController.SignUp);
 
 routes.get(
   "/google",
@@ -23,5 +22,7 @@ routes.get(
 routes.post("/signUp", UserController.SignUp);
 
 routes.post("/signIn", UserController.SignIn);
+
+routes.post("/forgotPassword", UserController.ForgotPassword);
 
 export default routes;
