@@ -2,6 +2,10 @@ import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 import { UsersModal } from "../modals/index.modals.mjs";
 
+import jwt from "jsonwebtoken";
+
+const jwtSecret = process.env.JWT_SECRET;
+
 const AuthGooglePassport = () => {
   passport.serializeUser((user, done) => {
     done(null, user);
@@ -19,9 +23,9 @@ const AuthGooglePassport = () => {
         clientSecret: process.env.GoogleSercetKey,
       },
       (accessToken, refreshToken, profile, done) => {
-        UsersModal.find({ email: profile?._json?.email })
-          .then((userExist) => {
-            if (userExist.length === 0) {
+        UsersModal.findOne({ email: profile?._json?.email }).then(
+          (userExist) => {
+            if (!userExist) {
               const user = profile?._json;
               const username = user?.name,
                 email = user?.email,
@@ -32,22 +36,28 @@ const AuthGooglePassport = () => {
                 email,
                 imgUrl,
                 authType,
-              })
-                .then((insertUser) => {})
-                .catch((error) => {
-                  console.log(
-                    error,
-                    "not inserted ... failded due to some errors"
-                  );
-                });
+              }).then((insertUser) => {
+                const token = jwt.sign(
+                  {
+                    _id: insertUser._id,
+                    email: insertUser.email,
+                  },
+                  jwtSecret
+                );
+                done(null, token);
+              });
             } else {
-              console.log("user exists");
+              const token = jwt.sign(
+                {
+                  _id: userExist._id,
+                  email: userExist.email,
+                },
+                jwtSecret
+              );
+              done(null, token);
             }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        done(null, profile.id);
+          }
+        );
       }
     )
   );
