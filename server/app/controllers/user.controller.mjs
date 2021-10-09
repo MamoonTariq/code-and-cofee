@@ -124,11 +124,10 @@ const ForgotPassword = (req, res) => {
                   from: process.env.GmailUser,
                   to: emailExist.email,
                   subject: "You New Password",
-                  text: "sadfasdfasdfasdfasdfasd",
+                  text: "Your new Password is: newPassword1",
                 };
                 transport.sendMail(mailOption, (error, info) => {
                   if (info) {
-                    console.log("ddaafadfasdfasfdasfasfdasd");
                     return res.json({
                       message: "check your email ",
                       status: 200,
