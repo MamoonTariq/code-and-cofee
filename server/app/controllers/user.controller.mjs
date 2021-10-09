@@ -45,4 +45,47 @@ const SignUp = async (req, res) => {
   }
 };
 
-export { SignUp };
+const SignIn = (req, res) => {
+  const { email = "", password = "" } = req.body;
+  if (email && password) {
+    UsersModal.findOne({ email: email, authType: "website" })
+      .then((currentUser) => {
+        if (currentUser) {
+          bcrypt
+            .compare(password, currentUser.password)
+            .then((passwordMatched) => {
+              if (passwordMatched) {
+                return res.json({
+                  data: currentUser,
+                  message: "user created successfuly",
+                  status: 200,
+                });
+              } else {
+                return res.json({
+                  error: "password not matched",
+                  status: 201,
+                });
+              }
+            });
+        } else {
+          return res.json({
+            error: "user not exist",
+            status: 201,
+          });
+        }
+      })
+      .catch((err) => {
+        return res.json({
+          error: err.message,
+          status: 201,
+        });
+      });
+  } else {
+    return res.json({
+      error: "fields are required",
+      status: 201,
+    });
+  }
+};
+
+export { SignUp, SignIn };

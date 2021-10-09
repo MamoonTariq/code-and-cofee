@@ -4,12 +4,10 @@ import { UsersModal } from "../modals/index.modals.mjs";
 
 const AuthGooglePassport = () => {
   passport.serializeUser((user, done) => {
-    console.log("serlize", user);
     done(null, user);
   });
 
   passport.deserializeUser((user, done) => {
-    console.log("deserlize", user);
     done(null, user);
   });
 
@@ -35,9 +33,7 @@ const AuthGooglePassport = () => {
                 imgUrl,
                 authType,
               })
-                .then((insertUser) => {
-                  console.log(insertUser, "succesfuly");
-                })
+                .then((insertUser) => {})
                 .catch((error) => {
                   console.log(
                     error,
