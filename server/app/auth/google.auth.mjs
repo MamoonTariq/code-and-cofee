@@ -28,12 +28,12 @@ const AuthGooglePassport = () => {
               const username = user?.name,
                 email = user?.email,
                 imgUrl = user?.picture,
-                commingFrom = "google";
+                authType = "google";
               UsersModal.create({
                 username,
                 email,
                 imgUrl,
-                commingFrom,
+                authType,
               })
                 .then((insertUser) => {
                   console.log(insertUser, "succesfuly");

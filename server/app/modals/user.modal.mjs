@@ -11,7 +11,6 @@ const userSchema = Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
   },
   email: {
     type: String,
@@ -25,7 +24,7 @@ const userSchema = Schema({
       "invalid email address...fromSchema",
     ],
   },
-  passord: {
+  password: {
     type: String,
   },
   role: {
@@ -33,7 +32,7 @@ const userSchema = Schema({
     enum: ["user", "admin", "super admin"],
     default: "user",
   },
-  commingFrom: {
+  authType: {
     type: String,
   },
   imgUrl: {

@@ -1,1 +1,1 @@
-export * as UserController from "./user/user.controller.mjs";
+export * as UserController from "./user.controller.mjs";

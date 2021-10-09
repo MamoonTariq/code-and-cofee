@@ -23,3 +23,9 @@ npm i morgan
 
 **=> Install Passport and Password Google OAuth2:**
 npm i passport passport-google-oauth2
+
+**=> Install bcrypt to convert password to hash:**
+npm install bcrypt
+
+**=> Install Json Web Token:**
+npm install jsonwebtoken

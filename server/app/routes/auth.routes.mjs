@@ -21,4 +21,6 @@ routes.get(
   }
 );
 
+routes.post("/signUp", UserController.SignUp);
+
 export default routes;
