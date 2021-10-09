@@ -114,24 +114,39 @@ const ForgotPassword = (req, res) => {
     UsersModal.findOne({ email: email, authType: "website" }).then(
       (emailExist) => {
         if (emailExist) {
-          const mailOption = {
-            from: process.env.GmailUser,
-            to: emailExist.email,
-            subject: "You New Password",
-            text: "sadfasdfasdfasdfasdfasd",
-          };
-          transport.sendMail(mailOption, (error, info) => {
-            if (info) {
-              return res.json({
-                message: "check your email",
-                status: 200,
+          bcrypt.hash("newPassword1", 10).then((hashPassword) => {
+            UsersModal.updateOne(
+              { email: email, authType: "website" },
+              { password: hashPassword }
+            )
+              .then((updateUser) => {
+                const mailOption = {
+                  from: process.env.GmailUser,
+                  to: emailExist.email,
+                  subject: "You New Password",
+                  text: "sadfasdfasdfasdfasdfasd",
+                };
+                transport.sendMail(mailOption, (error, info) => {
+                  if (info) {
+                    console.log("ddaafadfasdfasfdasfasfdasd");
+                    return res.json({
+                      message: "check your email ",
+                      status: 200,
+                    });
+                  } else {
+                    return res.json({
+                      error: "something went wrong try again later",
+                      status: 201,
+                    });
+                  }
+                });
+              })
+              .catch((err) => {
+                return res.json({
+                  error: err.message,
+                  status: 201,
+                });
               });
-            } else {
-              return res.json({
-                error: "something went wrong try again later",
-                status: 201,
-              });
-            }
           });
         } else {
           return res.json({
