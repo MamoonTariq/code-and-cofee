@@ -55,7 +55,6 @@ const SignIn = (req, res) => {
             .compare(password, currentUser.password)
             .then((passwordMatched) => {
               if (passwordMatched) {
-                console.log(jwtSecret);
                 const token = jwt.sign(
                   {
                     _id: currentUser._id,

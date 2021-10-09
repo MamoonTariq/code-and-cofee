@@ -16,7 +16,6 @@ routes.get(
   "/google/redirect",
   await Passport.authenticate("google"),
   (req, res) => {
-    console.log(req.user);
     res.redirect(`${process.env.GoogleLoginRedirect}?auth=${req.user}`);
   }
 );
