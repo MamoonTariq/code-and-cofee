@@ -22,6 +22,12 @@ const MainApp = () => {
   app.use(express.json());
   app.use(cors());
 
+  app.get("/", (req, res) => {
+    res.json({
+      message: "contact with admin",
+    });
+  });
+
   app.use("/auth", AuthRoutes);
   app.use("/api/v1", PostRoutes);
 
