@@ -5,7 +5,7 @@ import morgan from "morgan";
 import "dotenv/config";
 
 import mongodbConnection from "./database.mjs";
-import AuthRoutes from "../app/routes/auth.routes.mjs";
+import { AuthRoutes, PostRoutes } from "../app/routes/index.routes.mjs";
 import AuthGooglePassport from "../app/auth/google.auth.mjs";
 import Message from "../app/common/utils/index.mjs";
 
@@ -23,6 +23,7 @@ const MainApp = () => {
   app.use(cors());
 
   app.use("/auth", AuthRoutes);
+  app.use("/api/v1", PostRoutes);
 
   app.listen(process.env.PORT, () => {
     console.log(Message({ key: "serverStarted", status: 2 }));
