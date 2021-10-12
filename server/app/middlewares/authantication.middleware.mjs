@@ -1,10 +1,12 @@
 const UserAuthantication = (req, res, next) => {
-  const tokens = req.headers;
-  console.log(tokens);
-  // res.json({
-  //   message: "login not ",
-  //   status: 201,
-  // });
-  next();
+  const { token = "" } = req.headers;
+  if (token) {
+    next();
+  } else {
+    res.json({
+      message: "token required",
+      status: 201,
+    });
+  }
 };
 export default UserAuthantication;
