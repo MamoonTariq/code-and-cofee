@@ -69,7 +69,7 @@ const SignIn = (req, res) => {
               if (passwordMatched) {
                 const token = jwt.sign(
                   {
-                    _id: currentUser._id,
+                    id: currentUser._id,
                     email: currentUser.email,
                   },
                   jwtSecret

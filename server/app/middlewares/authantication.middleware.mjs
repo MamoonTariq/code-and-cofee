@@ -6,8 +6,8 @@ const UserAuthantication = (req, res, next) => {
   if (token) {
     const getTokenData = jwt.verify(token, jwtSecret);
     console.log(getTokenData);
-    const { _id = "", email = "" } = getTokenData;
-    if (_id && email) {
+    const { id = "", email = "" } = getTokenData;
+    if (id && email) {
       next();
     } else {
       res.json({
