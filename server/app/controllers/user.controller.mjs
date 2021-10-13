@@ -1,10 +1,10 @@
-import { UsersModal } from "../modals/index.modals.mjs";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import nodeMailer from "nodemailer";
+import { UsersModal } from '../modals/index.modals.mjs';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import nodeMailer from 'nodemailer';
 
 const transport = nodeMailer.createTransport({
-  host: "smtp.gmail.com",
+  host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   requireTLS: true,
@@ -17,7 +17,7 @@ const transport = nodeMailer.createTransport({
 const jwtSecret = process.env.JWT_SECRET;
 
 const SignUp = (req, res) => {
-  const { username = "", email = "", password = "" } = req.body;
+  const { username = '', email = '', password = '' } = req.body;
   if (username && email && password) {
     UsersModal.find({ email: email }).then((userExist) => {
       if (!userExist.length) {
@@ -26,11 +26,11 @@ const SignUp = (req, res) => {
             username,
             email,
             password: hashPassword,
-            authType: "website",
+            authType: 'website',
           })
             .then((responce) => {
               return res.json({
-                message: "user created successfully",
+                message: 'user created successfully',
                 status: 200,
                 date: responce,
               });
@@ -45,22 +45,22 @@ const SignUp = (req, res) => {
       } else {
         return res.json({
           success: 0,
-          message: "email already exist",
+          message: 'email already exist',
         });
       }
     });
   } else {
     return res.json({
       status: 201,
-      error: "all fields are required",
+      error: 'all fields are required',
     });
   }
 };
 
 const SignIn = (req, res) => {
-  const { email = "", password = "" } = req.body;
+  const { email = '', password = '' } = req.body;
   if (email && password) {
-    UsersModal.findOne({ email: email, authType: "website" })
+    UsersModal.findOne({ email: email, authType: 'website' })
       .then((currentUser) => {
         if (currentUser) {
           bcrypt
@@ -77,19 +77,19 @@ const SignIn = (req, res) => {
                 return res.json({
                   data: currentUser,
                   token: token,
-                  message: "user created successfuly",
+                  message: 'user created successfuly',
                   status: 200,
                 });
               } else {
                 return res.json({
-                  error: "password not matched",
+                  error: 'password not matched',
                   status: 201,
                 });
               }
             });
         } else {
           return res.json({
-            error: "user not exist",
+            error: 'user not exist',
             status: 201,
           });
         }
@@ -102,39 +102,39 @@ const SignIn = (req, res) => {
       });
   } else {
     return res.json({
-      error: "fields are required",
+      error: 'fields are required',
       status: 201,
     });
   }
 };
 
 const ForgotPassword = (req, res) => {
-  const { email = "" } = req.body;
+  const { email = '' } = req.body;
   if (email) {
-    UsersModal.findOne({ email: email, authType: "website" }).then(
+    UsersModal.findOne({ email: email, authType: 'website' }).then(
       (emailExist) => {
         if (emailExist) {
-          bcrypt.hash("newPassword1", 10).then((hashPassword) => {
+          bcrypt.hash('newPassword1', 10).then((hashPassword) => {
             UsersModal.updateOne(
-              { email: email, authType: "website" },
+              { email: email, authType: 'website' },
               { password: hashPassword }
             )
               .then((updateUser) => {
                 const mailOption = {
                   from: process.env.GmailUser,
                   to: emailExist.email,
-                  subject: "You New Password",
-                  text: "Your new Password is: newPassword1",
+                  subject: 'You New Password',
+                  text: 'Your new Password is: newPassword1',
                 };
                 transport.sendMail(mailOption, (error, info) => {
                   if (info) {
                     return res.json({
-                      message: "check your email ",
+                      message: 'check your email ',
                       status: 200,
                     });
                   } else {
                     return res.json({
-                      error: "something went wrong try again later",
+                      error: 'something went wrong try again later',
                       status: 201,
                     });
                   }
@@ -149,7 +149,7 @@ const ForgotPassword = (req, res) => {
           });
         } else {
           return res.json({
-            error: "email no found",
+            error: 'email no found',
             status: 201,
           });
         }
@@ -157,7 +157,7 @@ const ForgotPassword = (req, res) => {
     );
   } else {
     return res.json({
-      error: "email required",
+      error: 'email required',
       status: 201,
     });
   }
