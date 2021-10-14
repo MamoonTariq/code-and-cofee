@@ -35,3 +35,6 @@ npm i nodemailer
 
 **=> Switch on after open this link for sending email:**
 https://myaccount.google.com/lesssecureapps
+
+**=> Install Multer:**
+npm i multer
