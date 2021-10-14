@@ -7,7 +7,6 @@ import 'dotenv/config';
 import mongodbConnection from './database.mjs';
 import { AuthRoutes, PostRoutes } from '../app/routes/index.routes.mjs';
 import AuthGooglePassport from '../app/auth/google.auth.mjs';
-import Message from '../app/common/utils/index.mjs';
 
 const app = express();
 
@@ -32,7 +31,7 @@ const MainApp = () => {
   app.use('/api/v1', PostRoutes);
 
   app.listen(process.env.PORT, () => {
-    console.log(Message({ key: 'serverStarted', status: 2 }));
+    console.log('server started successfully');
   });
 };
 

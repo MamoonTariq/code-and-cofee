@@ -1,17 +1,12 @@
-import mongoose from "mongoose";
-import Message from "../app/common/utils/index.mjs";
+import mongoose from 'mongoose';
 
 const mongodbConnection = () => {
   mongoose.connect(process.env.DB_SRV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  mongoose.connection.on("connected", () => {
-    console.log(
-      Message({
-        key: "MongoConnect",
-      })
-    );
+  mongoose.connection.on('connected', () => {
+    console.log('db connected successfully');
   });
 };
 
