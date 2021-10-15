@@ -1,8 +1,9 @@
 import Multer from 'multer';
+import cloudinaryStorage from '../cloudinary/cloudinary.mjs';
 
 const storage = Multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../server/app/common/uploads/');
+    cb(null, '../server/app/utils/uploads/');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now();
@@ -24,9 +25,9 @@ const fileFilter = (req, file, cb) => {
 
 const PostImageMulter = async (req, res, next) => {
   let uploader = await Multer({
-    storage: storage,
+    storage: cloudinaryStorage,
     fileFilter: fileFilter,
-  }).any('image');
+  }).any();
 
   uploader(req, res, function (err) {
     if (err) {
