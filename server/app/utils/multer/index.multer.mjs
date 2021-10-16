@@ -1,6 +1,7 @@
 import Multer from 'multer';
 import cloudinaryStorage from '../cloudinary/cloudinary.mjs';
 
+// For storing data on our local folder
 const storage = Multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '../server/app/utils/uploads/');
