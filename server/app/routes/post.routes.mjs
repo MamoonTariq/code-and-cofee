@@ -10,20 +10,6 @@ routes.post(
   '/post/create',
   UserAuthantication,
   PostImageMulter,
-  //   function (req, res, next) {
-  //     {
-  //       UPLOAD(req, res, function (err) {
-  //         if (err) {
-  //           res.json({
-  //             error: err.message,
-  //             status: 201,
-  //           });
-  //         } else {
-  //           next();
-  //         }
-  //       });
-  //     }
-  //   },
   PostsController.Create
 );
 

@@ -2,7 +2,19 @@ import { PostsModal } from '../modals/index.modals.mjs';
 import { cloudinary } from '../utils/cloudinary/cloudinary.mjs';
 
 const Create = (req, res) => {
-  console.log(req.files);
+  const { title = '', userId = '', content = '' } = req.body;
+  if (!title) return res.json({ error: 'title required', status: 500 });
+  if (!userId) return res.json({ error: 'user Id required', status: 500 });
+
+  const images = req.files;
+  if (!images.length) return res.json({ error: 'image required', status: 500 });
+  let filterFeaturedImage = images.filter(
+    (img) => img.fieldname === 'featuredImage'
+  );
+  if (!filterFeaturedImage.length)
+    return res.json({ error: 'featured image required', status: 500 });
+
+  console.log(images);
   res.json({
     message: 'posts created successfully',
     status: 200,

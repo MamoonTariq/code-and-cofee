@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
 const PostSchema = Schema(
   {
-    user_id: {
+    userId: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: 'user',
     },
     title: {
       type: String,
@@ -15,15 +15,15 @@ const PostSchema = Schema(
     content: {
       type: String,
     },
-    thumbnailUrl: {
-      type: String,
+    featuredImage: {
+      type: Object,
     },
-    Images_URl: {
+    images: {
       type: [],
     },
   },
   { timestamps: true }
 );
-const PostsModal = mongoose.model("post", PostSchema);
+const PostsModal = mongoose.model('post', PostSchema);
 
 export default PostsModal;
