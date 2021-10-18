@@ -7,7 +7,8 @@ const Create = (req, res) => {
   if (!userId) return res.json({ error: 'user Id required', status: 500 });
 
   const images = req.files;
-  if (!images.length) return res.json({ error: 'image required', status: 500 });
+  if (!images.length)
+    return res.json({ error: 'featured image is required', status: 500 });
   let filterFeaturedImage = images.filter(
     (img) => img.fieldname === 'featuredImage'
   );
@@ -18,7 +19,13 @@ const Create = (req, res) => {
     url: filterFeaturedImage[0].url,
     name: filterFeaturedImage[0].name,
   };
-  console.log(images);
+  console.log(featuredImageObj);
+  PostsModal.create({
+    userId: userId,
+    title: title,
+    content: content,
+    featuredImage: featuredImageObj,
+  });
   res.json({
     message: 'posts created successfully',
     status: 200,
