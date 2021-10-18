@@ -14,6 +14,10 @@ const Create = (req, res) => {
   if (!filterFeaturedImage.length)
     return res.json({ error: 'featured image required', status: 500 });
 
+  let featuredImageObj = {
+    url: filterFeaturedImage[0].url,
+    name: filterFeaturedImage[0].name,
+  };
   console.log(images);
   res.json({
     message: 'posts created successfully',
