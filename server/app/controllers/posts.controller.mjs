@@ -25,7 +25,13 @@ const Create = (req, res) => {
     title: title,
     content: content,
     featuredImage: featuredImageObj,
-  });
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   res.json({
     message: 'posts created successfully',
     status: 200,
