@@ -32,7 +32,7 @@ const Create = (req, res) => {
     .catch((err) => {
       res.json({
         error: err.message,
-        status: 200,
+        status: 500,
       });
     });
 };
