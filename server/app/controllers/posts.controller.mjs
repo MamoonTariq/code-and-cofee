@@ -30,12 +30,11 @@ const Create = (req, res) => {
       console.log(res);
     })
     .catch((err) => {
-      console.log(err);
+      res.json({
+        error: err.message,
+        status: 200,
+      });
     });
-  res.json({
-    message: 'posts created successfully',
-    status: 200,
-  });
 };
 
 const Delete = async (req, res) => {
