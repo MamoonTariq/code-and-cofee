@@ -45,5 +45,5 @@ npm i multer
 Read Event Print Loop ---running our app code in node
 
 **=> Globals:**
-**dirname : path to current directory,
-**filename: file name,
+<b>dirname :</b> path to current directory,
+<b>filename:</b> file name,
