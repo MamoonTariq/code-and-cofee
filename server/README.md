@@ -42,4 +42,8 @@ npm i multer
 **=> Some Concepts--------:**
 
 **=> REPL:**
-Read Event Print Loop
+Read Event Print Loop ---running our app code in node
+
+**=> Globals:**
+**dirname : path to current directory,
+**filename: file name,
