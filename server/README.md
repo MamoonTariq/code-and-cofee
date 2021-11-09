@@ -47,3 +47,5 @@ Read Event Print Loop ---running our app code in node
 **=> Globals:**
 <b>\_\_dirname :</b> path to current directory,
 <b>\_\_filename:</b> file name,
+
+**=> Proccess:**
