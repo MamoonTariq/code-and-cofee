@@ -45,13 +45,17 @@ npm i multer
 Read Event Print Loop ---running our app code in node
 
 **=> Globals:**
+built-in objects that are part of the JavaScript and can be used directly in the application without importing any particular module.  
 <b>\_\_dirname :</b> path to current directory,
 <b>\_\_filename:</b> file name,
 
-**=> OS:**
-Operating System module
+**=> Modules:**
+Modules are global objects
 
-**=> Some Os method:**
+**=> OS:Operating System module**
+It's built in modules
+
+**=> Some Os Methods:**
 <br />
 Os.userInfo()
 <br />
