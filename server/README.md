@@ -48,4 +48,11 @@ Read Event Print Loop ---running our app code in node
 <b>\_\_dirname :</b> path to current directory,
 <b>\_\_filename:</b> file name,
 
-**=> Proccess:**
+**=> OS:**
+Operating System module
+
+**=> Some Os method:**
+<br />
+Os.userInfo()
+<br />
+Os.release()
