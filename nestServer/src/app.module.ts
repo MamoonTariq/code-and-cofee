@@ -6,7 +6,7 @@ import { TasksModule } from './tasks/tasks.module';
   imports: [
     TasksModule,
     MongooseModule.forRoot(
-      'mongodb+srv://root:1Dch0At6m5AQ8wJU@et.ok63x.mongodb.net/nestJs?retryWrites=true&w=majority',
+      'mongodb+srv://username:password@et.ok63x.mongodb.net/nestJs?retryWrites=true&w=majority',
     ),
   ],
 })
